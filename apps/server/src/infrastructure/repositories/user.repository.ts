@@ -4,10 +4,18 @@ import type { UserWithoutPassword } from '../../domain/entities/types'
 
 export default class UserRepository {
   public static async save({ email, password }: Pick<User, 'email' | 'password'>) {
+    const userName = email.replace(/^(.+)@(.+)$/g, '$1')
+
     return await db.user.create({
       data: {
         email,
-        password
+        password,
+        profile: {
+          create: { userName }
+        }
+      },
+      include: {
+        profile: true
       }
     })
   }

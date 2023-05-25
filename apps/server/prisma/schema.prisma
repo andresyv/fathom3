@@ -22,7 +22,7 @@ model User {
 
 model Profile {
     id  String   @id @default(uuid())
-    userName  String  @unique @db.VarChar(10)
+    userName  String  @unique @db.VarChar(32)
     userId String @unique
     credential User @relation(fields: [userId], references: [id], onDelete: Cascade)
     firstname String?
