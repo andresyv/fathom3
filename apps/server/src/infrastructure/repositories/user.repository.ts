@@ -29,6 +29,9 @@ export default class UserRepository {
     return await db.user.findUnique({
       where: {
         email
+      },
+      include: {
+        profile: true
       }
     })
   }
