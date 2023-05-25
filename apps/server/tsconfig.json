@@ -6,6 +6,7 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
+      // "@/*": ["./src/*"],
       "*": ["node_modules/*"]
     },
     "resolveJsonModule": true,
@@ -17,6 +18,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "./.eslintrc.cjs"],
+  "include": ["src/**/*.ts", "./.eslintrc.cjs", "src/server.ts"],
   "exclude": ["node_modules"]
 }

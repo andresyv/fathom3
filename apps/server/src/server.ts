@@ -1,11 +1,10 @@
-import Dotenv from 'dotenv'
-import App from './app'
-import Routes from './routes'
+import * as dotenv from 'dotenv'
+import path from 'path'
+import App from './application/app'
+import Routes from './interface/routes'
+import Plugins from './infrastructure/plugins'
 
-Dotenv.config()
+dotenv.config({ path: path.join(__dirname, '..', '.env') })
 
-const app = new App({ routes: Routes, plugins: [] })
-
+const app = new App({ routes: Routes, plugins: Plugins })
 app.start()
-
-// fastify.register(authController, { prefix: 'auth' })
