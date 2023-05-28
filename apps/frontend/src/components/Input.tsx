@@ -4,7 +4,7 @@ import { useFormContext, FieldValues, Path } from 'react-hook-form'
 interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'className'> {
   name: Path<FieldValues>
 }
-const SInput: FC<InputProps> = ({ name, ...rest }) => {
+const Input: FC<InputProps> = ({ name, ...rest }) => {
   const { register } = useFormContext()
   return (
     <fieldset className="flex flex-col w-full">
@@ -17,4 +17,4 @@ const SInput: FC<InputProps> = ({ name, ...rest }) => {
   )
 }
 
-export default SInput
+export default Input

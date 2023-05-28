@@ -8,7 +8,7 @@ interface AuthContextInterface {
 export const AuthContext = createContext<AuthContextInterface | null>(null)
 
 const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [isLoggedIn, setLoggedIn] = useState(true)
+  const [isLoggedIn, setLoggedIn] = useState(false)
   return <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>{children}</AuthContext.Provider>
 }
 
