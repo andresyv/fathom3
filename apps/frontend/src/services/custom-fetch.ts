@@ -11,7 +11,7 @@ class CustomFetch {
   #originalFetch: typeof window.fetch
 
   constructor() {
-    this.#originalFetch = window.fetch
+    this.#originalFetch = window.fetch.bind(window)
     this.#loadToken()
     this.fetch = async (resource, options) => {
       const req = new Request(resource, {
@@ -19,6 +19,9 @@ class CustomFetch {
         ...options
       })
       const destOrigin = new URL(req.url).origin
+      if (!this.#token) {
+        this.#loadToken()
+      }
       if (this.#token && allowedOrigins.includes(destOrigin)) {
         req.headers.set('Authorization', this.#token)
       }

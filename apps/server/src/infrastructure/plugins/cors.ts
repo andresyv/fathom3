@@ -3,7 +3,7 @@ import cors from '@fastify/cors'
 
 const corsPlugin = fastifyPlugin(async function (fastify, opts) {
   fastify.register(cors, {
-    origin: ['http://localhost:3000']
+    origin: ['http://localhost:5173']
   })
 })
 

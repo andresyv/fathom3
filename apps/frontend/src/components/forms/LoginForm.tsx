@@ -3,10 +3,12 @@ import Form from '../Form'
 import { LoginFormFields } from '../../types'
 import Input from '../Input'
 import Button from '../Button'
+import { login } from '../../services/auth'
 
 const LoginForm: FC = () => {
   const onSubmit = (form: LoginFormFields) => {
     console.log(form)
+    login(form)
   }
 
   return (
