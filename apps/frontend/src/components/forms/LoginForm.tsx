@@ -4,12 +4,19 @@ import { LoginFormFields } from '../../types'
 import Input from '../Input'
 import Button from '../Button'
 import { useAuthStore } from '../../stores/auth'
+import { useNavigate } from 'react-router-dom'
 
 const LoginForm: FC = () => {
+  const navigate = useNavigate()
   const login = useAuthStore((state) => state.login)
 
   const onSubmit = async (form: LoginFormFields) => {
-    await login(form)
+    try {
+      const user = await login(form)
+      if (user) {
+        navigate('/')
+      }
+    } catch (e) {}
   }
 
   return (
