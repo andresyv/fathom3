@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth'
 
 const ProtectedRoute: FC<PropsWithChildren> = ({ children }) => {
   const auth = useAuth()
-  if (!auth.isLoggedIn) {
+  if (!auth.isAuthenticated) {
     return <Navigate to="/auth/login" replace />
   }
   return <>{children}</>

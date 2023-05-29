@@ -1,15 +1,27 @@
-import { type PropsWithChildren, type FC, createContext, useState } from 'react'
+import { type PropsWithChildren, type FC, createContext, useState, useEffect } from 'react'
+import { useAuthStore } from '../stores/auth'
 
 interface AuthContextInterface {
-  isLoggedIn: boolean
-  setLoggedIn: (logged: boolean) => void
+  isAuthenticated: boolean
 }
 
 export const AuthContext = createContext<AuthContextInterface | null>(null)
 
 const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [isLoggedIn, setLoggedIn] = useState(false)
-  return <AuthContext.Provider value={{ isLoggedIn, setLoggedIn }}>{children}</AuthContext.Provider>
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true)
+  const user = useAuthStore((state) => state.user)
+
+  useEffect(() => {
+    try {
+      if (user) {
+        setIsAuthenticated(true)
+      } else {
+        setIsAuthenticated(false)
+      }
+    } catch (e) {}
+  }, [user])
+
+  return <AuthContext.Provider value={{ isAuthenticated }}>{children}</AuthContext.Provider>
 }
 
 export default AuthProvider

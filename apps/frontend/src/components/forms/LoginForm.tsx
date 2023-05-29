@@ -3,12 +3,13 @@ import Form from '../Form'
 import { LoginFormFields } from '../../types'
 import Input from '../Input'
 import Button from '../Button'
-import { login } from '../../services/auth'
+import { useAuthStore } from '../../stores/auth'
 
 const LoginForm: FC = () => {
-  const onSubmit = (form: LoginFormFields) => {
-    console.log(form)
-    login(form)
+  const login = useAuthStore((state) => state.login)
+
+  const onSubmit = async (form: LoginFormFields) => {
+    await login(form)
   }
 
   return (
