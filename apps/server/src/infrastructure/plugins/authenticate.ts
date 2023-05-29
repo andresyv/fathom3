@@ -4,7 +4,11 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 
 const AuthenticatePlugin = fastifyPlugin(async function (fastify, opts) {
   fastify.register(fastifyJwt, {
-    secret: 'supersecret'
+    secret: 'supersecret',
+    cookie: {
+      cookieName: 'api-auth',
+      signed: true
+    }
   })
 
   fastify.decorate('authenticate', async function (request: FastifyRequest, reply: FastifyReply) {
