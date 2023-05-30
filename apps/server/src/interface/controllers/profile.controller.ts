@@ -1,14 +1,15 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { getMyProfile } from '../../application/usecases/profile/get-my-profile'
+import { NotFoundError } from '../../domain/entities/errors/not-found.error'
 
 export default class ProfileController {
   static async getProfile(request: FastifyRequest, reply: FastifyReply) {
-    try {
-      const { id } = request.user
-      const profile = await getMyProfile(id)
-      return await reply.code(200).send({ message: 'success', data: profile })
-    } catch (e: any) {
-      return await reply.code(500).send({ message: e.message })
+    const { id } = request.user
+    const profile = await getMyProfile(id)
+
+    if (profile == null) {
+      throw new NotFoundError('Profile not found')
     }
+    return { message: 'success', data: profile }
   }
 }
