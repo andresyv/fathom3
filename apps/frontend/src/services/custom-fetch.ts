@@ -20,6 +20,7 @@ class CustomFetch {
 
       if (response.status === 401) {
         sessionStorage.removeItem('auth')
+        window.location.href = '/auth/login'
       }
 
       return response
