@@ -18,6 +18,7 @@ model User {
   updatedAt DateTime @default(now())
   isActive  Boolean  @default(true)
   profile   Profile?
+  posts Post[] 
 }
 
 model Profile {
@@ -27,4 +28,33 @@ model Profile {
     credential User @relation(fields: [userId], references: [id], onDelete: Cascade)
     firstname String?
     lastname  String?
+}
+
+model Post {
+  id  String   @id @default(uuid())
+  title String @db.VarChar(120)
+  price  Decimal?  @db.Decimal(10, 2)
+  creatorId String
+  credential User @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  isArchived Boolean @default(false)
+  categories CategoriesOnPosts[]
+}
+
+model Category {
+  id  String   @id @default(uuid())
+  name  String
+  posts CategoriesOnPosts[]
+}
+
+model CategoriesOnPosts {
+  post       Post     @relation(fields: [postId], references: [id])
+  postId     String
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String 
+  assignedAt DateTime @default(now())
+  assignedBy String
+
+  @@id([postId, categoryId])
 }
