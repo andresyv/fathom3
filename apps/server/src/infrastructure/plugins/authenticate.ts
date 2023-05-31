@@ -7,12 +7,13 @@ const AuthenticatePlugin = fastifyPlugin(async function (fastify, opts) {
     secret: 'supersecret',
     cookie: {
       cookieName: 'api-auth',
-      signed: true
+      signed: false
     }
   })
 
   fastify.decorate('authenticate', async function (request: FastifyRequest, reply: FastifyReply) {
     try {
+      console.log(request.cookies)
       await request.jwtVerify()
     } catch (err) {
       reply.send(err)

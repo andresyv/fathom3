@@ -1,3 +1,4 @@
+import { Profile } from '../models/profile'
 import { User } from '../models/user'
 import { LoginFormFields } from '../types'
 import customFetch from './custom-fetch'
@@ -9,13 +10,22 @@ async function login(form: LoginFormFields): Promise<User> {
     method: 'POST',
     body: JSON.stringify(form)
   })
-  const { user } = await res.json()
+  const { data } = await res.json()
+  getMyProfile()
+  return data
+}
 
-  return user
+async function getMyProfile(): Promise<Profile> {
+  const res = await customFetch.fetch(`${BASE_URL}/profile`, {
+    method: 'GET'
+  })
+  const { data } = await res.json()
+  return data
 }
 
 const authService = {
-  login
+  login,
+  getMyProfile
 }
 
 export default authService

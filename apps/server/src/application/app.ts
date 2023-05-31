@@ -13,7 +13,7 @@ export default class App {
   constructor(opts: { plugins: Array<FastifyPluginAsync<FastifyPluginOptions>>; routes: AuthRoutes[] }) {
     this.port = config.port
     this.app = fastify({
-      logger: true
+      logger: false
     })
     this.registerPlugins(opts.plugins)
     this.registerRoutes(opts.routes)

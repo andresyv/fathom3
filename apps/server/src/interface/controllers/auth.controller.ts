@@ -5,27 +5,28 @@ import { loginUser } from '../../application/usecases/auth/login-user'
 import { createUser } from '../../application/usecases/auth/create-user'
 
 export default class AuthController {
-  static async login(request: FastifyRequest, reply: FastifyReply): Promise<UserInterface> {
+  static async login(request: FastifyRequest, reply: FastifyReply) {
     try {
       const { email, password } = request.body as UserInterface
       const user = await loginUser({ email, password })
       const token = await reply.jwtSign(user)
+      console.log('token', token)
       reply.setCookie('api-auth', token, {
         secure: false,
         httpOnly: true,
         expires: dayjs().add(7, 'days').toDate()
       })
-      return await reply.code(200).send({ message: 'login success', user, token })
+      return { message: 'login success', data: user, token }
     } catch (e: any) {
       return await reply.code(500).send({ message: e.message })
     }
   }
 
-  static async signup(request: FastifyRequest, reply: FastifyReply): Promise<UserInterface> {
+  static async signup(request: FastifyRequest, reply: FastifyReply) {
     try {
       const { email, password } = request.body as UserInterface
       const user = await createUser({ email, password })
-      return await reply.code(200).send({ message: 'Success', data: user })
+      return { message: 'Success', data: user }
     } catch (e: any) {
       return await reply.code(500).send({ message: e.message })
     }
