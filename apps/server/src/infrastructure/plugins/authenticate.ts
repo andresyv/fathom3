@@ -13,7 +13,6 @@ const AuthenticatePlugin = fastifyPlugin(async function (fastify, opts) {
 
   fastify.decorate('authenticate', async function (request: FastifyRequest, reply: FastifyReply) {
     try {
-      console.log(request.cookies)
       await request.jwtVerify()
     } catch (err) {
       reply.send(err)

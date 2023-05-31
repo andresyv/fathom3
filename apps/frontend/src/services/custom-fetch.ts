@@ -11,16 +11,22 @@ class CustomFetch {
 
     this.fetch = async (resource, options) => {
       const req = new Request(resource, {
-        headers: { ...options?.headers, ...defaultHeaders, mode: 'cors' },
+        headers: { ...options?.headers, ...defaultHeaders },
+        ...options,
         credentials: 'include',
-        ...options
+        mode: 'cors'
       })
 
       const response = await this.#originalFetch(req)
 
-      if (response.status === 401) {
-        sessionStorage.removeItem('auth')
-        window.location.href = '/auth/login'
+      if (!response.ok) {
+        if (response.status === 401) {
+          sessionStorage.removeItem('auth')
+        }
+        if (!window.location.href.includes('/auth/login')) {
+          window.location.href = '/auth/login'
+        }
+        return await Promise.reject(response)
       }
 
       return response

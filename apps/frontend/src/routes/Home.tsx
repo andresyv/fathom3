@@ -1,3 +1,7 @@
 export default function HomePage() {
-  return <h1>Home</h1>
+  return (
+    <main className="flex flex-col h-main w-full">
+      <h1>Home</h1>
+    </main>
+  )
 }
