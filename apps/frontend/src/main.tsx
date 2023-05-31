@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import AuthProvider from './contexts/AuthContext'
@@ -10,7 +10,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <AuthProvider>
       <DefaultLayout>
-        <RouterProvider router={router} />
+        <Suspense>
+          <RouterProvider router={router} />
+        </Suspense>
       </DefaultLayout>
     </AuthProvider>
   </React.StrictMode>

@@ -1,7 +1,10 @@
+/* eslint-disable react-refresh/only-export-components */
+import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
-import HomePage from './Home'
-import LoginPage from './auth/Login'
-import ProtectedRoute from '../components/ProtectedRoute'
+
+const ProtectedRoute = lazy(async () => await import('../components/ProtectedRoute'))
+const HomePage = lazy(async () => await import('./Home'))
+const LoginPage = lazy(async () => await import('./auth/Login'))
 
 // eslint-disable-next-line react-refresh/only-export-components
 export default createBrowserRouter([
