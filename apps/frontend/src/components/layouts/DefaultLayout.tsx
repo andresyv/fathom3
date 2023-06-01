@@ -6,7 +6,7 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     getProfile()
-  }, [])
+  }, [getProfile])
 
   return (
     <>

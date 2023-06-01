@@ -1,19 +1,11 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider } from 'react-router-dom'
-import AuthProvider from './contexts/AuthContext'
-import router from './routes'
+
 import './index.css'
-import DefaultLayout from './components/layouts/DefaultLayout'
+import App from './App'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <AuthProvider>
-      <DefaultLayout>
-        <Suspense>
-          <RouterProvider router={router} />
-        </Suspense>
-      </DefaultLayout>
-    </AuthProvider>
+    <App />
   </React.StrictMode>
 )
