@@ -11,7 +11,6 @@ async function login(form: LoginFormFields): Promise<User> {
     body: JSON.stringify(form)
   })
   const { data } = await res.json()
-  getMyProfile()
   return data
 }
 
