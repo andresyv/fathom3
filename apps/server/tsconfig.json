@@ -18,6 +18,6 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "./.eslintrc.cjs", "src/server.ts"],
+  "include": ["src/**/*.ts", "./.eslintrc.cjs", "src/server.ts", "prisma/seed.ts"],
   "exclude": ["node_modules"]
 }
