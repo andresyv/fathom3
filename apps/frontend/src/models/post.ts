@@ -6,6 +6,7 @@ export const PostSchema = z.object({
   description: z.string().min(4),
   creatorId: z.string().uuid(),
   price: z.number().optional(),
+  picture: z.string().optional(),
   createdAt: z.string(),
   updatedAt: z.string().optional(),
   isArchived: z.boolean()

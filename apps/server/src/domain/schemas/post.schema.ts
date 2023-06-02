@@ -18,6 +18,9 @@ export const CreatePostSchema = {
       price: {
         type: 'number'
       },
+      picture: {
+        type: 'string'
+      },
       isArchived: {
         type: 'boolean'
       }

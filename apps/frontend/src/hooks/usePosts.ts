@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import { Post } from '../models/post'
 import postService from '../services/posts'
 
-const PAGE_SIZE = 10
+const PAGE_SIZE = 12
 
 export const usePosts = () => {
   const { isLoading, isError, data, refetch, fetchNextPage, hasNextPage } = useInfiniteQuery<{

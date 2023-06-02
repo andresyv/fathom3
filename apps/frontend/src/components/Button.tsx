@@ -7,21 +7,24 @@ const variants = {
     neutral: 'bg-white hover:bg-gray-100 border'
   },
   block: '!w-full',
-  ghost: 'bg-transparent border-none hover:bg-gray-200'
+  ghost: 'bg-transparent border-none hover:bg-gray-200',
+  sm: 'px-2 py-2'
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'neutral'
   block?: boolean
   ghost?: boolean
+  sm?: boolean
 }
 
-const Button: FC<ButtonProps> = ({ variant = 'primary', className, children, block, ghost, ...rest }) => {
+const Button: FC<ButtonProps> = ({ variant = 'primary', className, children, block, ghost, sm, ...rest }) => {
   return (
     <button
       className={clsx('px-6 py-4 rounded-lg w-fit font-semibold', !ghost && variants.color[variant], {
         [variants.block]: block,
-        [variants.ghost]: ghost
+        [variants.ghost]: ghost,
+        [variants.sm]: sm
       })}
       {...rest}
     >

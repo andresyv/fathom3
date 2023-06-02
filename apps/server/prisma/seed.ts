@@ -18,7 +18,8 @@ async function main() {
             title: faker.commerce.productName(),
             description: faker.commerce.productDescription(),
             price: faker.commerce.price(),
-            creatorId: user.id
+            creatorId: user.id,
+            picture: faker.image.urlLoremFlickr({ category: 'abstract' })
           }
         })
       )

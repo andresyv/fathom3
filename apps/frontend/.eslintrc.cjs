@@ -21,6 +21,7 @@ module.exports = {
     'jsx-quotes': 'off',
     '@typescript-eslint/space-before-function-paren': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
-    '@typescript-eslint/member-delimiter-style': 'off'
+    '@typescript-eslint/member-delimiter-style': 'off',
+    'multiline-ternary': 'off'
   }
 }

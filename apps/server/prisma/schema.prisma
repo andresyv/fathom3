@@ -35,6 +35,7 @@ model Post {
   title String @db.VarChar(120)
   description String
   price  Decimal?  @db.Decimal(10, 2)
+  picture String?
   creatorId String
   credential User @relation(fields: [creatorId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
