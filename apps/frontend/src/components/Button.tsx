@@ -6,7 +6,7 @@ const variants = {
     primary: 'bg-indigo-500 hover:bg-indigo-600 border text-white',
     neutral: 'bg-white hover:bg-gray-100 border'
   },
-  block: '!w-full',
+  block: '!w-full justify-center',
   ghost: 'bg-transparent border-none hover:bg-gray-200',
   sm: 'px-2 py-2'
 }
@@ -21,10 +21,11 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FC<ButtonProps> = ({ variant = 'primary', className, children, block, ghost, sm, ...rest }) => {
   return (
     <button
-      className={clsx('px-6 py-4 rounded-lg w-fit font-semibold', !ghost && variants.color[variant], {
+      className={clsx('rounded-lg w-fit font-semibold flex gap-2 items-center', !ghost && variants.color[variant], {
         [variants.block]: block,
         [variants.ghost]: ghost,
-        [variants.sm]: sm
+        [variants.sm]: sm,
+        'px-6 py-4': !sm
       })}
       {...rest}
     >

@@ -1,4 +1,5 @@
 import { Post } from '../models/post'
+import { CreatePostFormType } from '../types'
 import customFetch from './custom-fetch'
 
 const BASE_URL = 'http://localhost:8080'
@@ -20,8 +21,19 @@ async function getPosts({
   return { posts: data, nextCursor }
 }
 
+async function createPost(form: CreatePostFormType): Promise<Post> {
+  const res = await customFetch.fetch(`${BASE_URL}/posts/`, {
+    method: 'POST',
+    body: JSON.stringify(form)
+  })
+
+  const { data } = await res.json()
+  return data
+}
+
 const postService = {
-  getPosts
+  getPosts,
+  createPost
 }
 
 export default postService

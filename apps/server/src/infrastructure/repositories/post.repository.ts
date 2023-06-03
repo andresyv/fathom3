@@ -15,7 +15,8 @@ export default class PostRepository {
     return await db.post.findMany({
       skip: cursorObj == null ? 0 : 1,
       cursor: cursorObj,
-      take: results
+      take: results,
+      orderBy: [{ createdAt: 'desc' }, { id: 'desc' }]
     })
   }
 }
