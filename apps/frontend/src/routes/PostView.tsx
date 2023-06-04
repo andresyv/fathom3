@@ -23,11 +23,19 @@ function PostView() {
       <main className="flex flex-col w-full p-4 justify-center">
         <section id="resume" className="flex justify-center gap-10">
           <div className="flex flex-col w-1/2 items-center gap-10">
-            <img
-              src={postData.picture}
-              className="rounded-lg  border border-gray-200 object-center object-cover w-full h-86"
-              alt="Post picture"
-            />
+            {postData.picture ? (
+              <img
+                src={postData.picture}
+                className="rounded-lg  border border-gray-200 object-center object-cover w-full h-86"
+                alt="Post picture"
+              />
+            ) : (
+              <img
+                src="/image-placeholder.jpg"
+                className="rounded-lg  border border-gray-200 object-center object-cover w-full h-86"
+                alt="Post picture"
+              />
+            )}
             <div className="flex flex-col justify-start w-full gap-2">
               <h2 className="text-2xl">{postData.title}</h2>
               <strong className="text-4xl">{priceToEUR(postData.price)}</strong>

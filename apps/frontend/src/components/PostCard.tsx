@@ -22,13 +22,23 @@ const PostCard: FC<PostCardProps> = ({ post }) => {
       key={post.id}
       onClick={onPostClicked}
     >
-      <img
-        src={post.picture}
-        className="rounded-t-lg object-center object-cover aspect-square"
-        width="100%"
-        alt={`${post.title} picture`}
-        loading="lazy"
-      />
+      {post.picture ? (
+        <img
+          src={post.picture}
+          className="rounded-t-lg object-center object-cover aspect-square"
+          width="100%"
+          alt={`${post.title} picture`}
+          loading="lazy"
+        />
+      ) : (
+        <img
+          src="/image-placeholder.jpg"
+          className="rounded-t-lg object-center object-cover aspect-square"
+          width="100%"
+          alt={`${post.title} picture`}
+          loading="lazy"
+        />
+      )}
       <div className="flex flex-col py-4 px-6 gap-4">
         <div className="flex gap-2 justify-between items-center">
           <h3 className="font-regular text-xl">{post.title}</h3>

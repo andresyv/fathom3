@@ -40,7 +40,7 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
             to="/post/create"
           >
             <CreateIcon className="h-4 w-4" />
-            Publicar
+            Publish
           </Link>
           <Menu as="div" className="flex text-left relative items-center">
             <div>
