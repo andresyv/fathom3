@@ -23,7 +23,27 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-
+  ads-frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      VITE_API_URL: http://localhost:8080
+    ports:
+      - "3000:3000"
+  ads-api:
+    build:
+      context: ./apps/server
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      PORT: 8080
+      POSTGRES_PASSWORD: 8CFvE52VPDhyHhcuNM2SgXm3
+      POSTGRES_URL: postgresql://root:8CFvE52VPDhyHhcuNM2SgXm3@postgres-db:5432/fathom?schema=public
+      SECRET_KEY: t5qCzzm3vTkyagrT9nKkCB8U
+    ports:
+      - "8080:8080"
 volumes:
   pgfathom:
   pgadmin-data:

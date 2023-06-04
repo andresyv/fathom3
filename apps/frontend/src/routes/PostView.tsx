@@ -21,8 +21,8 @@ function PostView() {
   return (
     <DefaultLayout>
       <main className="flex flex-col w-full p-4 justify-center">
-        <section id="resume" className="flex justify-center gap-10">
-          <div className="flex flex-col w-1/2 items-center gap-10">
+        <section id="resume" className="flex flex-col md:flex-row justify-center gap-10">
+          <div className="flex flex-col w-full md:w-1/2 items-center gap-10">
             {postData.picture ? (
               <img
                 src={postData.picture}
@@ -45,7 +45,8 @@ function PostView() {
               <p className="text-left text-lg">{postData.description}</p>
             </div>
           </div>
-          <div className="flex flex-col gap-6 w-1/4">
+          <div className="md:hidden w-full h-[1px] border border-gray-300 px-3" />
+          <div className="flex flex-col gap-6 w-full md:w-1/4">
             <div className="flex gap-2 items-center border border-gray-100 rounded-lg px-4 py-2">
               <AccountIcon className="text-gray-200 w-24 h-24" />
               <span className="font-semibold">{`${postData.creator.profile.userName}'s offer`}</span>

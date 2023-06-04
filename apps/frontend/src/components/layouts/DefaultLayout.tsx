@@ -6,7 +6,7 @@ import {
   MdOutlineAccountCircle as AccountIcon
 } from 'react-icons/md'
 import { IoLogoTwitter as TwitterIcon, IoLogoLinkedin as LinkedInIcon } from 'react-icons/io'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, Transition } from '@headlessui/react'
 
 const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
@@ -15,6 +15,7 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
   const profile = useAuthStore((state) => state.profile)
   const logout = useAuthStore((state) => state.logout)
   const resetAuthStore = useAuthStore((state) => state.reset)
+  const location = useLocation()
 
   useEffect(() => {
     if (!profile) {
@@ -35,13 +36,16 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
           100Anuncios
         </Link>
         <div className="flex gap-4">
-          <Link
-            className="rounded-lg flex font-semibold bg-indigo-500 h-[40px] text-white p-2 gap-2 items-center"
-            to="/post/create"
-          >
-            <CreateIcon className="h-4 w-4" />
-            Publish
-          </Link>
+          {location.pathname === '/post/create' ? null : (
+            <Link
+              className="rounded-lg shadow-2xl shadow-indigo-500 md:shadow-none fixed md:static bottom-[60px] right-[40px] flex font-semibold bg-indigo-500 h-[40px] text-white px-4 py-2 md:p-2 gap-2 items-center"
+              to="/post/create"
+            >
+              <CreateIcon className="h-4 w-4" />
+              Publish
+            </Link>
+          )}
+
           <Menu as="div" className="flex text-left relative items-center">
             <div>
               <Menu.Button className="border rounded-lg flex border-gray-200 h-[40px] p-2 gap-2 items-center">

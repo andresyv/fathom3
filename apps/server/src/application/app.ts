@@ -11,7 +11,7 @@ export default class App {
   public port: number
 
   constructor(opts: { plugins: Array<FastifyPluginAsync<FastifyPluginOptions>>; routes: AuthRoutes[] }) {
-    this.port = config.port
+    this.port = parseInt(config.port)
     this.app = fastify({
       logger: true
     })
@@ -33,7 +33,7 @@ export default class App {
 
   public async start() {
     try {
-      await this.app.listen({ port: this.port })
+      await this.app.listen({ port: this.port, host: '0.0.0.0' })
     } catch (err) {
       this.app.log.error(err)
       process.exit(1)

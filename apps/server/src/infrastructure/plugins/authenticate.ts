@@ -1,10 +1,11 @@
 import fastifyPlugin from 'fastify-plugin'
 import fastifyJwt from '@fastify/jwt'
 import { FastifyReply, FastifyRequest } from 'fastify'
+import config from '../config/config'
 
 const AuthenticatePlugin = fastifyPlugin(async function (fastify, opts) {
   fastify.register(fastifyJwt, {
-    secret: 'supersecret',
+    secret: config.SECRET_KEY,
     cookie: {
       cookieName: 'api-auth',
       signed: false

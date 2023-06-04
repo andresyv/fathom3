@@ -2,7 +2,7 @@ import { Post, PostWithCreator } from '../models/post'
 import { CreatePostFormType } from '../types'
 import customFetch from './custom-fetch'
 
-const BASE_URL = 'http://localhost:8080'
+const BASE_URL = import.meta.env.VITE_API_URL
 
 async function getPosts({
   cursor,

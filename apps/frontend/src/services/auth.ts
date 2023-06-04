@@ -3,7 +3,7 @@ import { User } from '../models/user'
 import { LoginFormFields, SignUpFields } from '../types'
 import customFetch from './custom-fetch'
 
-const BASE_URL = 'http://localhost:8080'
+const BASE_URL = import.meta.env.VITE_API_URL
 
 async function login(form: LoginFormFields): Promise<User> {
   const res = await customFetch.fetch(`${BASE_URL}/auth/login`, {

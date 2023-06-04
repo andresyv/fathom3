@@ -1,4 +1,4 @@
-import React, { type FormHTMLAttributes, type ReactElement } from 'react'
+import { type FormHTMLAttributes, type ReactElement } from 'react'
 import { useForm, SubmitHandler, FieldValues, UseFormProps, FormProvider } from 'react-hook-form'
 
 interface FormProps<T extends FieldValues> extends Omit<FormHTMLAttributes<HTMLFormElement>, 'onSubmit'> {
