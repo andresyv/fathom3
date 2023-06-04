@@ -1,12 +1,21 @@
 import { Profile } from '../models/profile'
 import { User } from '../models/user'
-import { LoginFormFields } from '../types'
+import { LoginFormFields, SignUpFields } from '../types'
 import customFetch from './custom-fetch'
 
 const BASE_URL = 'http://localhost:8080'
 
 async function login(form: LoginFormFields): Promise<User> {
   const res = await customFetch.fetch(`${BASE_URL}/auth/login`, {
+    method: 'POST',
+    body: JSON.stringify(form)
+  })
+  const { data } = await res.json()
+  return data
+}
+
+async function signup(form: SignUpFields): Promise<User> {
+  const res = await customFetch.fetch(`${BASE_URL}/auth/signup`, {
     method: 'POST',
     body: JSON.stringify(form)
   })
@@ -24,6 +33,7 @@ async function getMyProfile(): Promise<Profile> {
 
 const authService = {
   login,
+  signup,
   getMyProfile
 }
 

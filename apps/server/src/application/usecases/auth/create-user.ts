@@ -9,5 +9,7 @@ export const createUser = async ({ email, password }: Pick<UserInterface, 'email
     throw new Error('Email already exist!')
   }
   const _password = await SessionManager.hashPassword(password)
-  return await UserRepository.save({ email, password: _password })
+  const user = await UserRepository.save({ email, password: _password })
+  UserRepository.exclude(user, ['password'])
+  return user
 }

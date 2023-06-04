@@ -26,6 +26,14 @@ export default class AuthController {
     try {
       const { email, password } = request.body as UserInterface
       const user = await createUser({ email, password })
+
+      const token = await reply.jwtSign(user)
+      reply.setCookie('api-auth', token, {
+        secure: false,
+        httpOnly: true,
+        expires: dayjs().add(7, 'days').toDate()
+      })
+
       return { message: 'Success', data: user }
     } catch (e: any) {
       return await reply.code(500).send({ message: e.message })

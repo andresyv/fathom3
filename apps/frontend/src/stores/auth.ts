@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { persist, devtools, createJSONStorage } from 'zustand/middleware'
 import { User, UserSchema } from '../models/user'
-import { LoginFormFields } from '../types'
+import { LoginFormFields, SignUpFields } from '../types'
 import authService from '../services/auth'
 import { Profile, ProfileSchema } from '../models/profile'
 
@@ -9,6 +9,7 @@ interface AuthState {
   user: User | null
   profile: Profile | null
   login: (form: LoginFormFields) => Promise<User | null>
+  signUp: (form: SignUpFields) => Promise<User | null>
   getProfile: () => Promise<Profile | null>
   logout: () => void
   reset: () => void
@@ -24,6 +25,11 @@ export const useAuthStore = create<AuthState>()(
           login: async (form) => {
             const user = UserSchema.parse(await authService.login(form))
             set({ user }, false, 'DO_LOGIN')
+            return user
+          },
+          signUp: async (form) => {
+            const user = UserSchema.parse(await authService.signup(form))
+            set({ user }, false, 'DO_SIGNUP')
             return user
           },
           getProfile: async () => {
