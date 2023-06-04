@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { UserWithProfileSchema } from './user'
 
 export const PostSchema = z.object({
   id: z.string().uuid(),
@@ -12,4 +13,9 @@ export const PostSchema = z.object({
   isArchived: z.boolean()
 })
 
+export const PostWithCreatorSchema = PostSchema.extend({
+  creator: UserWithProfileSchema
+})
+
 export type Post = z.infer<typeof PostSchema>
+export type PostWithCreator = z.infer<typeof PostWithCreatorSchema>

@@ -25,7 +25,7 @@ model Profile {
     id  String   @id @default(uuid())
     userName  String  @unique @db.VarChar(32)
     userId String @unique
-    credential User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
     firstname String?
     lastname  String?
 }
@@ -37,26 +37,8 @@ model Post {
   price  Decimal?  @db.Decimal(10, 2)
   picture String?
   creatorId String
-  credential User @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  creator User @relation(fields: [creatorId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   isArchived Boolean @default(false)
-  categories CategoriesOnPosts[]
-}
-
-model Category {
-  id  String   @id @default(uuid())
-  name  String
-  posts CategoriesOnPosts[]
-}
-
-model CategoriesOnPosts {
-  post       Post     @relation(fields: [postId], references: [id])
-  postId     String
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId String 
-  assignedAt DateTime @default(now())
-  assignedBy String
-
-  @@id([postId, categoryId])
 }

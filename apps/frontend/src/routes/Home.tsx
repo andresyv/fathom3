@@ -39,7 +39,7 @@ export default function HomePage() {
   }
   return (
     <DefaultLayout>
-      <main className="flex flex-col w-full py-4 px-4 gap-10 items-center">
+      <main className="flex flex-col w-full p-4 gap-10 justify-center items-center">
         <div className="flex flex-wrap gap-4 justify-center">
           {posts.map((post) => (
             <PostCard post={post} key={post.id} />

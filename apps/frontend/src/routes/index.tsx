@@ -6,6 +6,7 @@ const ProtectedRoute = lazy(async () => await import('../components/ProtectedRou
 const HomePage = lazy(async () => await import('./Home'))
 const CreatePage = lazy(async () => await import('./Create'))
 const LoginPage = lazy(async () => await import('./auth/Login'))
+const PostPage = lazy(async () => await import('./PostView'))
 
 // eslint-disable-next-line react-refresh/only-export-components
 export default createBrowserRouter([
@@ -22,6 +23,14 @@ export default createBrowserRouter([
     element: (
       <ProtectedRoute>
         <CreatePage />
+      </ProtectedRoute>
+    )
+  },
+  {
+    path: '/post/:id',
+    element: (
+      <ProtectedRoute>
+        <PostPage />
       </ProtectedRoute>
     )
   },

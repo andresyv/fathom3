@@ -34,3 +34,13 @@ export const GetPostsSchema = {
     results: { type: 'number' }
   }
 }
+
+export const GetPostByIdSchema = {
+  params: {
+    type: 'object',
+    required: ['id'],
+    properties: {
+      id: { type: 'string' }
+    }
+  }
+}

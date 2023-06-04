@@ -10,6 +10,7 @@ interface AuthState {
   profile: Profile | null
   login: (form: LoginFormFields) => Promise<User | null>
   getProfile: () => Promise<Profile | null>
+  logout: () => void
   reset: () => void
 }
 
@@ -29,6 +30,9 @@ export const useAuthStore = create<AuthState>()(
             const profile = ProfileSchema.parse(await authService.getMyProfile())
             set({ profile }, false, 'GET_PROFILE')
             return profile
+          },
+          logout: () => {
+            sessionStorage.removeItem('auth')
           },
           reset: () => {
             set({ user: null }, false, 'RESET')

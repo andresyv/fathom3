@@ -1,4 +1,4 @@
-import { Post } from '@prisma/client'
+import { Post, User } from '@prisma/client'
 import db from '../database/prisma-connection'
 import { PaginationInterface } from '../../domain/interface/pagination.interface'
 
@@ -17,6 +17,17 @@ export default class PostRepository {
       cursor: cursorObj,
       take: results,
       orderBy: [{ createdAt: 'desc' }, { id: 'desc' }]
+    })
+  }
+
+  public static async getById(postId: string): Promise<(Post & { creator: User }) | null> {
+    return await db.post.findUnique({
+      where: { id: postId },
+      include: {
+        creator: {
+          include: { profile: true }
+        }
+      }
     })
   }
 }

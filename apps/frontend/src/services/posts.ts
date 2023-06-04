@@ -1,4 +1,4 @@
-import { Post } from '../models/post'
+import { Post, PostWithCreator } from '../models/post'
 import { CreatePostFormType } from '../types'
 import customFetch from './custom-fetch'
 
@@ -21,6 +21,14 @@ async function getPosts({
   return { posts: data, nextCursor }
 }
 
+async function getPostById(postId: string): Promise<PostWithCreator> {
+  const url = new URL(`${BASE_URL}/posts/${postId}`)
+  const res = await customFetch.fetch(url)
+  const { data } = await res.json()
+
+  return data
+}
+
 async function createPost(form: CreatePostFormType): Promise<Post> {
   const res = await customFetch.fetch(`${BASE_URL}/posts/`, {
     method: 'POST',
@@ -33,7 +41,8 @@ async function createPost(form: CreatePostFormType): Promise<Post> {
 
 const postService = {
   getPosts,
-  createPost
+  createPost,
+  getPostById
 }
 
 export default postService
