@@ -21,12 +21,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: FC<ButtonProps> = ({ variant = 'primary', className, children, block, ghost, sm, ...rest }) => {
   return (
     <button
-      className={clsx('rounded-lg w-fit font-semibold flex gap-2 items-center', !ghost && variants.color[variant], {
-        [variants.block]: block,
-        [variants.ghost]: ghost,
-        [variants.sm]: sm,
-        'px-6 py-4': !sm
-      })}
+      className={clsx(
+        'transition-all rounded-lg w-fit font-semibold flex gap-2 items-center',
+        !ghost && variants.color[variant],
+        {
+          [variants.block]: block,
+          [variants.ghost]: ghost,
+          [variants.sm]: sm,
+          'px-6 py-4': !sm
+        }
+      )}
       {...rest}
     >
       {children}

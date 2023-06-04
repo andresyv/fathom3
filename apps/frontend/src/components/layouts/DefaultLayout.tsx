@@ -63,6 +63,12 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
                 className="divide-y bg-white rounded-lg rounded-md divide-gray-100 shadow-lg ring-black mt-2 origin-top-right top-6 right-0 ring-1 ring-opacity-5 w-56 absolute focus:outline-none"
               >
                 <div className="py-1 px-1 ">
+                  <Menu.Item as="li" className="rounded-lg flex py-2 px-4 gap-2 items-center hover:bg-gray-100">
+                    <Link className="flex gap-2 items-center w-full" to="/profile">
+                      <AccountIcon />
+                      Profile
+                    </Link>
+                  </Menu.Item>
                   <Menu.Item
                     as="li"
                     className="rounded-lg flex py-2 px-4 gap-2 items-center hover:bg-gray-100"
