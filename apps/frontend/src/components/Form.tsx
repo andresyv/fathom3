@@ -8,7 +8,7 @@ interface FormProps<T extends FieldValues> extends Omit<FormHTMLAttributes<HTMLF
 }
 
 const SForm = <T extends FieldValues>({ defaultValues, children, onSubmit, className }: FormProps<T>) => {
-  const methods = useForm<T>(defaultValues)
+  const methods = useForm<T>({ ...defaultValues, mode: 'onChange' })
   const { handleSubmit } = methods
   return (
     <FormProvider {...methods}>

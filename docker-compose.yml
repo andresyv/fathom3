@@ -37,6 +37,8 @@ services:
       context: ./apps/server
       dockerfile: Dockerfile
     restart: always
+    depends_on:
+      - postgres-db
     environment:
       PORT: 8080
       POSTGRES_PASSWORD: 8CFvE52VPDhyHhcuNM2SgXm3

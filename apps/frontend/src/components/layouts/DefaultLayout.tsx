@@ -14,7 +14,6 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
   const getProfile = useAuthStore((state) => state.getProfile)
   const profile = useAuthStore((state) => state.profile)
   const logout = useAuthStore((state) => state.logout)
-  const resetAuthStore = useAuthStore((state) => state.reset)
   const location = useLocation()
 
   useEffect(() => {
@@ -25,7 +24,6 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
 
   const onSignOut = () => {
     logout()
-    resetAuthStore()
     navigate('/')
   }
 
@@ -38,7 +36,7 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
         <div className="flex gap-4">
           {location.pathname === '/post/create' ? null : (
             <Link
-              className="rounded-lg shadow-2xl shadow-indigo-500 md:shadow-none fixed md:static bottom-[60px] right-[40px] flex font-semibold bg-indigo-500 h-[40px] text-white px-4 py-2 md:p-2 gap-2 items-center"
+              className="rounded-lg flex font-semibold bg-indigo-500 h-[40px] text-white py-2 px-4 right-[40px] bottom-[60px] shadow-2xl shadow-indigo-500 gap-2 fixed items-center md:shadow-none md:p-2 md:static"
               to="/post/create"
             >
               <CreateIcon className="h-4 w-4" />
@@ -68,7 +66,7 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
               >
                 <div className="py-1 px-1 ">
                   <Menu.Item as="li" className="rounded-lg flex py-2 px-4 gap-2 items-center hover:bg-gray-100">
-                    <Link className="flex gap-2 items-center w-full" to="/profile">
+                    <Link className="flex w-full gap-2 items-center" to="/profile">
                       <AccountIcon />
                       Profile
                     </Link>
@@ -88,15 +86,15 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
         </div>
       </header>
       {children}
-      <footer className="bg-white border-b text-gray-400 flex border-gray-100 h-[64px] px-6 items-center justify-between">
+      <footer className="bg-white border-b flex border-gray-100 h-[64px] px-6 text-gray-400 items-center justify-between">
         <span className="font-semibold">100Anuncios</span>
         <span>© {new Date().getFullYear()}</span>
         <div className="flex gap-4">
           <a href="#">
-            <LinkedInIcon className="w-6 h-6" />
+            <LinkedInIcon className="h-6 w-6" />
           </a>
           <a href="#">
-            <TwitterIcon className="w-6 h-6" />
+            <TwitterIcon className="h-6 w-6" />
           </a>
         </div>
       </footer>

@@ -22,12 +22,13 @@ class CustomFetch {
       if (!response.ok) {
         if (response.status === 401) {
           sessionStorage.removeItem('auth')
+          localStorage.removeItem('posts')
           if (!window.location.href.includes('/auth/login')) {
             window.location.href = '/auth/login'
           }
         }
-
-        return await Promise.reject(response)
+        const error = await response.json()
+        return await Promise.reject(error)
       }
 
       return response

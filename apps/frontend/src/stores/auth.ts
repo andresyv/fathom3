@@ -4,6 +4,7 @@ import { User, UserSchema } from '../models/user'
 import { LoginFormFields, SignUpFields } from '../types'
 import authService from '../services/auth'
 import { Profile, ProfileSchema } from '../models/profile'
+import { usePostsStore } from './posts'
 
 interface AuthState {
   user: User | null
@@ -18,7 +19,7 @@ interface AuthState {
 export const useAuthStore = create<AuthState>()(
   devtools(
     persist(
-      (set) => {
+      (set, get) => {
         return {
           user: null,
           profile: null,
@@ -38,10 +39,13 @@ export const useAuthStore = create<AuthState>()(
             return profile
           },
           logout: () => {
-            sessionStorage.removeItem('auth')
+            const { reset } = get()
+            reset()
           },
           reset: () => {
             set({ user: null }, false, 'RESET')
+            sessionStorage.removeItem('auth')
+            usePostsStore.getState().reset()
           }
         }
       },

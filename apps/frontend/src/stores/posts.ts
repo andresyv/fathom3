@@ -6,6 +6,7 @@ interface PostsState {
   savedPosts: Post[]
   savePost: (post: Post) => void
   postIsSaved: (postId: string) => boolean
+  reset: () => void
 }
 
 export const usePostsStore = create<PostsState>()(
@@ -27,6 +28,10 @@ export const usePostsStore = create<PostsState>()(
           postIsSaved: (postId) => {
             const { savedPosts } = get()
             return savedPosts.some((post) => post.id === postId)
+          },
+          reset() {
+            set({ savedPosts: [] })
+            localStorage.removeItem('posts')
           }
         }
       },

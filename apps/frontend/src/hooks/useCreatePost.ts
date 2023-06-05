@@ -1,15 +1,21 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import postService from '../services/posts'
+import { useToast } from './useToast'
 
 export const useCreatePost = () => {
   const queryClient = useQueryClient()
+  const { showToast } = useToast()
   const {
     mutate: createPost,
     isLoading,
-    error
+    error,
+    data
   } = useMutation(postService.createPost, {
-    onError: (error, _variables) => {
-      console.log(error)
+    onError: (error: any, _variables) => {
+      showToast({
+        message: error.message,
+        type: 'error'
+      })
     },
     onSettled: async () => {
       await queryClient.invalidateQueries({
@@ -21,6 +27,7 @@ export const useCreatePost = () => {
   return {
     createPost,
     isLoading,
-    error
+    error,
+    post: data
   }
 }

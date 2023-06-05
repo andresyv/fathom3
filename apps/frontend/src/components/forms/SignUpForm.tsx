@@ -29,9 +29,24 @@ const LoginForm: FC = () => {
           <h3 className="font-bold text-3xl text-indigo-500">Create account</h3>
         </div>
         <div className="flex flex-col gap-4">
-          <Input name="email" placeholder="email@example.com" autoComplete="email" />
-          <Input name="password" placeholder="Your password" autoComplete="current-password" type="password" />
-          <Input name="passwordRepeat" placeholder="Repeat password" autoComplete="current-password" type="password" />
+          <Input
+            name="email"
+            validation={{
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: 'Please enter a valid email address'
+            }}
+            placeholder="email@example.com"
+            autoComplete="email"
+            required
+          />
+          <Input name="password" placeholder="Your password" autoComplete="current-password" type="password" required />
+          <Input
+            name="passwordRepeat"
+            placeholder="Repeat password"
+            autoComplete="current-password"
+            type="password"
+            required
+          />
           <Button block type="submit">
             Sign up
           </Button>
