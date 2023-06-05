@@ -2,7 +2,7 @@ import fastify, { FastifyInstance, FastifyPluginAsync, FastifyPluginOptions } fr
 import config from '../infrastructure/config/config'
 
 interface AuthRoutes {
-  routes: FastifyPluginAsync<FastifyPluginOptions>
+  routes: (fastify: FastifyInstance, options: FastifyPluginOptions, done: () => void) => void
   prefix: string
 }
 

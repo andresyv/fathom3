@@ -2,7 +2,9 @@ version: "3.1"
 
 services:
   postgres-db:
-    image: postgres:15.3
+    build:
+      context: ./apps/db
+      dockerfile: Dockerfile
     restart: always
     environment:
       POSTGRES_PASSWORD: 8CFvE52VPDhyHhcuNM2SgXm3

@@ -31,7 +31,7 @@ const DefaultLayout: FC<PropsWithChildren> = ({ children }) => {
     <>
       <header className="bg-white border-b flex border-gray-100 h-[64px] px-6 top-0 justify-between items-center sticky">
         <Link className="cursor-pointer font-bold text-lg text-indigo-500" to="/">
-          100Anuncios
+          100Ads
         </Link>
         <div className="flex gap-4">
           {location.pathname === '/post/create' ? null : (
